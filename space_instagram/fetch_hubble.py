@@ -1,13 +1,13 @@
 import requests
 import pathlib
 import os
-import json
 from download_img import download_image
 
 
 def main():
     pathlib.Path('images').mkdir(parents=True, exist_ok=True)
     fetch_hubble_collection('wallpaper')
+
 
 def fetch_hubble_photo(id):
     url = f'http://hubblesite.org/api/v3/image/{id}'
@@ -18,6 +18,7 @@ def fetch_hubble_photo(id):
     image_name = f'hubble_{id}{image_extension}'
     download_image(last_image_link, image_name)
 
+
 def fetch_hubble_collection(collections_name):
     url = f'http://hubblesite.org/api/v3/images/{collections_name}'
     response = requests.get(url)
@@ -26,6 +27,7 @@ def fetch_hubble_collection(collections_name):
     for image_number, image in enumerate(collection):
         fetch_hubble_photo(image['id'])
         print(f'{image_number + 1} of {len(collection)}')
+
 
 if __name__ == '__main__':
     main()
