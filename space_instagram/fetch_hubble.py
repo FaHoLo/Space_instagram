@@ -1,6 +1,8 @@
-import requests
-import pathlib
 import os
+import pathlib
+
+import requests
+
 from download_img import download_image
 
 
